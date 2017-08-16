@@ -11,19 +11,19 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.define "app1" do |app|
-    app.vm.hostname = "app1"
+    app.vm.hostname = "node1"
     app.vm.box = "bento/ubuntu-16.04"
     app.vm.network :public_network, ip: "192.168.0.114"
   end
 
   config.vm.define "app2" do |app|
-    app.vm.hostname = "app2"
+    app.vm.hostname = "node2"
     app.vm.box = "bento/ubuntu-16.04"
     app.vm.network :public_network, ip: "192.168.0.115"
   end
 
   config.vm.define "app" do |app|
-    app.vm.hostname = "app3"
+    app.vm.hostname = "node3"
     app.vm.box = "bento/ubuntu-16.04"
     app.vm.network :public_network, ip: "192.168.0.116"
   end
