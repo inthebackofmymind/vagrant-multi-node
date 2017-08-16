@@ -22,7 +22,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     app.vm.network :public_network, ip: "192.168.0.115"
   end
 
-  config.vm.define "app" do |app|
+  config.vm.define "app3" do |app|
     app.vm.hostname = "node3"
     app.vm.box = "bento/ubuntu-16.04"
     app.vm.network :public_network, ip: "192.168.0.116"
@@ -31,6 +31,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision "shell", inline: <<-SHELL
      cd /opt
      curl -sSL https://get.docker.com | sh
+     apt-get -y install openssh-server
   SHELL
 
 end    
