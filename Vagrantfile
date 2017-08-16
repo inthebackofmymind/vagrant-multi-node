@@ -11,24 +11,26 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.define "app1" do |app|
-    app.vm.hostname = "orc-app1.dev"
-    app.vm.box = "geerlingguy/centos7"
-    app.vm.network :private_network, ip: "192.168.60.4"
-    app.vm.network "forwarded_port", guest: 443, host: 4341 
+    app.vm.hostname = "app1"
+    app.vm.box = "bento/ubuntu-16.04"
+    app.vm.network :public_network, ip: "192.168.0.114"
   end
 
   config.vm.define "app2" do |app|
-    app.vm.hostname = "orc-app2.dev"
-    app.vm.box = "geerlingguy/centos7"
-    app.vm.network :private_network, ip: "192.168.60.5"
-    app.vm.network "forwarded_port", guest: 443, host: 4342 
+    app.vm.hostname = "app2"
+    app.vm.box = "bento/ubuntu-16.04"
+    app.vm.network :public_network, ip: "192.168.0.115"
   end
 
-  config.vm.define "db" do |db|
-    db.vm.hostname = "orc-db.dev"
-    db.vm.box = "geerlingguy/centos7"
-    db.vm.network :private_network, ip: "192.168.60.6"
-    db.vm.network "forwarded_port", guest: 80, host: 8080
-    db.vm.network "forwarded_port", guest: 443, host: 4343 
+  config.vm.define "app" do |app|
+    app.vm.hostname = "app3"
+    app.vm.box = "bento/ubuntu-16.04"
+    app.vm.network :public_network, ip: "192.168.0.116"
   end
+
+  config.vm.provision "shell", inline: <<-SHELL
+     cd /opt
+     curl -sSL https://get.docker.com | sh
+  SHELL
+
 end    
